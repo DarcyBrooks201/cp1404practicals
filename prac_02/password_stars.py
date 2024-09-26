@@ -3,6 +3,10 @@
 def main():
     min_password_length = int(input("minimum length: "))
     password = get_password(min_password_length)
+    print_stars(password)
+
+
+def print_stars(password):
     print('*' * len(password))
 
 
