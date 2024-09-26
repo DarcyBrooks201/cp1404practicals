@@ -20,7 +20,7 @@ def main():
             print(menu)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "S":
-            print('*' * len(score))
+            print('*' * score)
             print(menu)
             menu_choice = input(">>> ").upper()
         else:
