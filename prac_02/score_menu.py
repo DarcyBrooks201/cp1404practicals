@@ -6,15 +6,12 @@ def main():
 (P)rint result 
 (S)how stars (this should print as many stars as the score)
 (Q)uit"""
-    score = 0
+    score = get_valid_score()
     print(menu)
     menu_choice = input(">>> ").upper()
     while menu_choice != "Q":
         if menu_choice == "G":
-            score = float(input("Enter score: "))
-            while score < 0 or score > 100:
-                print("Invalid score")
-                score = float(input("Enter score: "))
+            score = get_valid_score()
             print(menu)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "P":
@@ -31,6 +28,14 @@ def main():
             print(menu)
             menu_choice = input(">>> ").upper()
     print("Goodbye")
+
+
+def get_valid_score():
+    score = float(input("Enter score: "))
+    while score < 0 or score > 100:
+        print("Invalid score")
+        score = float(input("Enter score: "))
+    return score
 
 
 def determine_grade(score):
