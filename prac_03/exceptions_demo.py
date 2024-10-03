@@ -18,5 +18,5 @@ try:
     fraction = numerator / denominator
     print(fraction)
 except ValueError:
-    print("Numerator and denominator must be valid numbers!")
+    print("Numerator and denominator must be valid numbers.txt!")
 print("Finished.")
