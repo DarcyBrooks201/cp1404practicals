@@ -14,10 +14,12 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1
 MAX_PRICE = 100
 INITIAL_PRICE = 10.0
+FILENAME = "capitalist_conrad_data.py"
 
-price = INITIAL_PRICE
 number_of_days = 1
-print(f"${price:,.2f}")
+out_file = open(FILENAME, 'w')
+price = INITIAL_PRICE
+print(f"${price:,.2f}", file=out_file)
 while MIN_PRICE <= price <= MAX_PRICE:
     price_change = 0
     # generate a random integer of 1 or 2
@@ -31,5 +33,6 @@ while MIN_PRICE <= price <= MAX_PRICE:
         # between negative MAX_DECREASE and 0
         price_change = random.uniform(-MAX_DECREASE, 0)
     price *= (1 + price_change)
-    print(f"On day {number_of_days} the price is: ${price:,.2f}")
+    print(f"On day {number_of_days} the price is: ${price:,.2f}", file=out_file)
     number_of_days += 1
+out_file.close()
