@@ -7,8 +7,8 @@ out_file.close()
 #
 # # 2
 in_file = open("name.txt", "r")
-for line in in_file:
-    name = line.strip("\n")
+line = in_file.readline()
+name = line.strip("\n")
 in_file.close()
 print(f"Hi {name}!")
 
