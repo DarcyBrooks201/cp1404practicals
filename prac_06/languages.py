@@ -10,4 +10,4 @@ print(python)
 languages = [python, ruby, visual_basic]
 for language in languages:
   if ProgrammingLanguage.is_dynamic(language):
-      print(language)
+      print(language.name)
