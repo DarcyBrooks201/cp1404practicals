@@ -18,7 +18,8 @@ class Guitar:
 
     def get_age(self):
         """Gets how old the guitar is based on current year"""
-        return int(2024 - self.year)
+        current_year = 2022
+        return int(2022 - self.year)
 
     def is_vintage(self):
         """Returns True if the guitar is over 50 years old"""
@@ -26,8 +27,3 @@ class Guitar:
         return age > 50
 
 
-if __name__ == '__main__':
-    g1 = Guitar("Gibson L-5 CES", 1922, 16035.4)
-    print(g1)
-    print(Guitar.get_age(g1,))
-    print(Guitar.is_vintage(g1))
