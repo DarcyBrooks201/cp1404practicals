@@ -12,4 +12,4 @@ class Project:
 
     def __repr__(self):
         """String version of project object"""
-        return f"{self.name}    {self.start_date}   {self.priority} {self.cost_estimate}    {self.completion_percentage}"
+        return f"({self.name}, {self.start_date}, {self.priority}, {self.cost_estimate}, {self.completion_percentage})"
