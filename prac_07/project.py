@@ -13,3 +13,7 @@ class Project:
     def __repr__(self):
         """String version of project object"""
         return f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate ${self.cost_estimate}, completion: {self.completion_percentage}%"
+
+    def project_original_string(self):
+        """Original string version of project"""
+        return f"{self.name}    {self.start_date}   {self.priority} {self.cost_estimate}    {self.completion_percentage}"

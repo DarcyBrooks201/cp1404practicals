@@ -2,7 +2,7 @@
 prac 7 project_management
 expected time: 60 minutes
 8:32 - 9:27
-
+9:50 -
 Expected 60 minutes, was actually ()
 """
 
@@ -24,9 +24,10 @@ def main():
             filename = input("Filename: ")
             projects = load_file(filename)
         elif menu_choice == "S":
-            pass
+            filename = input("Filename: ")
+            save_file(filename, projects)
         elif menu_choice == "D":
-            #TODO fix
+            # TODO fix
             print("Incomplete projects:")
             print(project for project in projects if project[4] == 100)
             print("Complete projects:")
@@ -44,7 +45,7 @@ def main():
             pass
     save_choice = input(f"Would you like to save to {filename}?").upper()
     if save_choice == "Y":
-        pass
+        save_file(filename, projects)
     print("Thank you for using custom-built project management software.")
 
 
@@ -64,7 +65,17 @@ def load_file(filename):
         # print(start_time)
         projects.append(Project(*parts))
     in_file.close()
+    print(f"Successfully loaded {len(projects)} projects from {filename}")
     return projects
+
+
+def save_file(filename, projects):
+    out_file = open(filename, "w")
+    print("Name	Start Date	Priority	Cost Estimate	Completion Percentage", file=out_file)
+    for project in projects:
+        print(Project.project_original_string(project), file=out_file)
+    out_file.close()
+    print(f"Successfully saved {len(projects)} projects to {filename}")
 
 
 main()
