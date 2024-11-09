@@ -8,12 +8,8 @@ Expected 60 minutes, was actually ()
 """
 
 import datetime
-from turtledemo.penrose import start
-
 from prac_07.project import Project
 
-
-# TODO Add docstrings to functions
 
 def main():
     filename = "projects.txt"
@@ -30,8 +26,7 @@ def main():
             save_file(filename, projects)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "D":
-            # TODO add sorting
-            # projects.sort(project[2])
+            projects.sort(key=lambda project: project.priority)
             print("Incomplete projects:")
             for project in projects:
                 if project["completion_percentage"] != 100:
@@ -42,7 +37,7 @@ def main():
                     print(project)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "F":
-            #TODO complete
+            # TODO complete
             pass
             menu_choice = input(">>> ").upper()
         elif menu_choice == "A":
@@ -58,24 +53,28 @@ def main():
 
 
 def update_project(projects):
+    """Update a project's priority and completion percentage, can be left blank to not change"""
     project_number = 0
     for project in projects:
         print(f"{project_number} {project}")
         project_number += 1
-    project_choice = int(input("Project choice"))
-    while project_choice < 0 or project_choice > len(projects):
+    project_choice = int(input("Project choice: "))
+    while project_choice < 0 or project_choice > (len(projects) - 1):
         print("Invalid project choice")
-        project_choice = int(input("Project choice"))
+        project_choice = int(input("Project choice: "))
     print(projects[project_choice])
-    new_percentage = int(input("new percentage: "))
-    if new_percentage != "":
-        projects[project_choice][4] = new_percentage
-    new_priority = int(input("new priority: "))
-    if new_priority != "":
-        projects[project_choice][2] = new_priority
+    new_percentage_string = input("new completion percentage: ")
+    if new_percentage_string != "":
+        new_percentage = int(new_percentage_string)
+        projects[project_choice]["completion_percentage"] = new_percentage
+    new_priority_string = input("new priority: ")
+    if new_priority_string != "":
+        new_priority = int(new_priority_string)
+        projects[project_choice]["priority"] = new_priority
 
 
 def add_project(projects):
+    """Add a new project to list of projects"""
     name = input("name: ")
     start_date = input("start date: ")
     priority = int(input("priority: "))
@@ -85,11 +84,13 @@ def add_project(projects):
 
 
 def display_menu():
+    """Display menu options"""
     print(
         "(L)oad projects, (S)ave projects, (D)isplay projects, (F)ilter projects by date, (A)dd new project, (U)pdate project, (Q)uit")
 
 
 def load_file(filename):
+    """Get project information from a file"""
     projects = []
     in_file = open(filename)
     in_file.readline()
@@ -105,10 +106,11 @@ def load_file(filename):
 
 
 def save_file(filename, projects):
+    """Save project information to a file"""
     out_file = open(filename, "w")
     print("Name	Start Date	Priority	Cost Estimate	Completion Percentage", file=out_file)
     for project in projects:
-        #TODO fix output
+        # TODO fix output
         print(Project.project_original_string(project), file=out_file)
     out_file.close()
     print(f"Successfully saved {len(projects)} projects to {filename}")
