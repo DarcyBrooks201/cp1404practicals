@@ -3,8 +3,8 @@ prac 7 project_management
 expected time: 60 minutes
 8:32 - 9:27
 9:50 - 10:07
-10:24 -
-Expected 60 minutes, was actually ()
+10:24 - 12:15
+Expected 60 minutes, was actually 183 minutes
 """
 
 import datetime
@@ -84,10 +84,11 @@ def update_project(projects):
 
 def add_project(projects):
     """Add a new project to list of projects"""
+    print("Let's add a new project")
     name = input("name: ")
     start_date = input("start date (dd/mm/yyyy): ")
     priority = int(input("priority: "))
-    cost_estimate = float(input("cost estimate: "))
+    cost_estimate = float(input("cost estimate: $"))
     completion_percentage = int(input("completion percentage: "))
     projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
 
@@ -95,7 +96,7 @@ def add_project(projects):
 def display_menu():
     """Display menu options"""
     print(
-        "(L)oad projects, (S)ave projects, (D)isplay projects, (F)ilter projects by date, (A)dd new project, (U)pdate project, (Q)uit")
+        "(L)oad projects\n(S)ave projects\n(D)isplay projects\n(F)ilter projects by date\n(A)dd new project\n(U)pdate project\n(Q)uit")
 
 
 def load_file(filename):
