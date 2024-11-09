@@ -35,6 +35,7 @@ def main():
             for project in projects:
                 if project["completion_percentage"] == 100:
                     print(project)
+            display_menu()
             menu_choice = input(">>> ").upper()
         elif menu_choice == "F":
             min_start_date_string = input("Show projects that start after date (dd/mm/yyyy): ")
@@ -44,14 +45,17 @@ def main():
                 start_date = project["start_date"]
                 if start_date >= min_start_date:
                     print(project)
+            display_menu()
             menu_choice = input(">>> ").upper()
         elif menu_choice == "A":
             add_project(projects)
+            display_menu()
             menu_choice = input(">>> ").upper()
         elif menu_choice == "U":
             update_project(projects)
+            display_menu()
             menu_choice = input(">>> ").upper()
-    save_choice = input(f"Would you like to save to {filename}?").upper()
+    save_choice = input(f"Would you like to save to {filename}? ").upper()
     if save_choice == "Y":
         save_file(filename, projects)
     print("Thank you for using custom-built project management software.")
@@ -113,10 +117,11 @@ def load_file(filename):
 def save_file(filename, projects):
     """Save project information to a file"""
     out_file = open(filename, "w")
-    print("Name	Start Date	Priority	Cost Estimate	Completion Percentage", file=out_file)
+    print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)
     for project in projects:
-        # TODO fix output
-        print(Project.project_original_string(project), file=out_file)
+        print(
+            f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+            file=out_file)
     out_file.close()
     print(f"Successfully saved {len(projects)} projects to {filename}")
 
