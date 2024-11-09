@@ -1,17 +1,18 @@
 """prac 7, project class"""
-
+import datetime
 
 class Project:
     def __init__(self, name="", start_date="31/12/2000", priority=0, cost_estimate=0.0, completion_percentage=0.0):
         """Construct project object from Name, Start Date, Priority, Cost Estimate, and Completion Percentage"""
         self.name = name
-        self.start_date = start_date
+        self.start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
         self.priority = int(priority)
         self.cost_estimate = float(cost_estimate)
         self.completion_percentage = int(completion_percentage)
 
     def __repr__(self):
         """String version of project object"""
+        start_date_str = self.start_date.strftime("%d/%m/%Y")
         return f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate ${self.cost_estimate}, completion: {self.completion_percentage}%"
 
     def __getitem__(self, key):
@@ -32,7 +33,7 @@ class Project:
         if key == "name":
             self.name = value
         elif key == "start_date":
-            self.start_date = value
+            self.start_date = datetime.datetime.strptime(value, "%d/%m/%Y").date()
         elif key == "priority":
             self.priority = value
         elif key == "cost_estimate":

@@ -37,8 +37,13 @@ def main():
                     print(project)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "F":
-            # TODO complete
-            pass
+            min_start_date_string = input("Show projects that start after date (dd/mm/yyyy): ")
+            min_start_date = datetime.datetime.strptime(min_start_date_string, "%d/%m/%Y").date()
+            projects.sort(key=lambda project: project.start_date)
+            for project in projects:
+                start_date = project["start_date"]
+                if start_date >= min_start_date:
+                    print(project)
             menu_choice = input(">>> ").upper()
         elif menu_choice == "A":
             add_project(projects)
@@ -76,7 +81,7 @@ def update_project(projects):
 def add_project(projects):
     """Add a new project to list of projects"""
     name = input("name: ")
-    start_date = input("start date: ")
+    start_date = input("start date (dd/mm/yyyy): ")
     priority = int(input("priority: "))
     cost_estimate = float(input("cost estimate: "))
     completion_percentage = int(input("completion percentage: "))
