@@ -6,6 +6,7 @@ class UnreliableCar(Car):
     """Specialised version of Car class"""
 
     def __init__(self, name, fuel, reliability= 0.0):
+        """Construct an unreliable car object"""
         super().__init__(name, fuel)
         self.reliability = reliability
 
