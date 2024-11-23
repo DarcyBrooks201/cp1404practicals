@@ -13,10 +13,7 @@ def main():
     while menu_choice != "Q":
         if menu_choice == "C":
             print("Taxis available: ")
-            taxi_number = 0
-            for taxi in taxis:
-                print(f"{taxi_number} - {taxi}")
-                taxi_number += 1
+            print_taxis(taxis)
             taxi_choice = int(input("Choose taxi: "))
             if taxi_choice > (len(taxis) - 1) or taxi_choice < 0:
                 print("Invalid taxi choice")
@@ -33,6 +30,7 @@ def main():
                 current_taxi.drive(drive_distance)
                 current_fare = current_taxi.get_fare()
                 total_trip_cost += current_fare
+                current_taxi.start_fare()
                 print(f"Your {current_taxi.name} trip cost you ${current_fare:.2f}")
             print(f"Bill to date: ${total_trip_cost:.2f}")
             print_menu()
@@ -43,8 +41,15 @@ def main():
             print_menu()
             menu_choice = input(">>> ").upper()
     print(f"Total trip cost: ${total_trip_cost:.2f}")
-    # TODO finish this print
-    print(f"Taxi's are now...")
+    print(f"Taxis are now")
+    print_taxis(taxis)
+
+
+def print_taxis(taxis):
+    taxi_number = 0
+    for taxi in taxis:
+        print(f"{taxi_number} - {taxi}")
+        taxi_number += 1
 
 
 def print_menu():
