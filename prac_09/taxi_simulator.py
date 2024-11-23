@@ -29,7 +29,11 @@ def main():
             if current_taxi == "":
                 print("You need to choose a taxi before you can drive")
             else:
-                pass
+                drive_distance = int(input("Drive how far? "))
+                current_taxi.drive(drive_distance)
+                current_fare = current_taxi.get_fare()
+                total_trip_cost += current_fare
+                print(f"Your {current_taxi.name} trip cost you ${current_fare:.2f}")
             print(f"Bill to date: ${total_trip_cost:.2f}")
             print_menu()
             menu_choice = input(">>> ").upper()
