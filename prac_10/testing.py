@@ -10,7 +10,7 @@ from prac_06.car import Car
 def repeat_string(s, n):
     """Repeat string s, n times, with spaces in between."""
     original = s * n
-    answer = " ".join([s]*n)
+    answer = " ".join([s] * n)
     return answer
 
 
@@ -58,10 +58,11 @@ run_tests()
 # (PyCharm may see your >>> doctest comments and run doctests anyway.)
 doctest.testmod()
 
+
 # 4. Fix the failing is_long_word function
 # (Don't change the tests, change the function!)
 
-# TODO: 5. Write and test a function to format a phrase as a sentence,
+# 5. Write and test a function to format a phrase as a sentence,
 # starting with a capital and ending with a single full stop.
 # Important: start with a function header and just use pass as the body
 # then add doctests for 3 tests:
@@ -70,3 +71,18 @@ doctest.testmod()
 # and one more that you decide is a useful test.
 # Run your doctests and watch the tests fail.
 # Then write the body of the function so that the tests pass.
+
+def test_sentences(sentence):
+    """
+    >>> test_sentences("hello")
+    'Hello.'
+    >>> test_sentences("It is an ex parrot.")
+    'It is an ex parrot.'
+    >>> test_sentences("hello Harold")
+    'Hello Harold.'
+    #Actually returns 'Hello harold.'
+    """
+    new_sentence = sentence.capitalize()
+    if sentence[-1] != '.':
+        new_sentence = f"{new_sentence}."
+    return new_sentence
